@@ -13,7 +13,7 @@ executors:
   ios-executor:
     macos:
       xcode: "15.2.0"
-    resource_class: m2pro.large
+    resource_class: m4pro.large
 
 commands:
   install-android-sdk-manager:
