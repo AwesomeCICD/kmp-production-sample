@@ -93,7 +93,7 @@ jobs:
       - run:
           name: Build shared module for all platforms
           command: |
-            ./gradlew :shared:build :shared:test
+            ./gradlew :shared:build :shared:test :shared:validateKotlinCodeStyle
       - android/save_gradle_cache:
           cache_prefix: v6-shared
       - store_artifacts:
