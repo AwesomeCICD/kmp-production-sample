@@ -3,6 +3,7 @@ version: 2.1
 orbs:
   android: circleci/android@3.1.0
   gradle: circleci/gradle@3.0.0
+  macos: circleci/macos@2.5.2
 
 executors:
   android-docker:
@@ -12,7 +13,7 @@ executors:
   ios-executor:
     macos:
       xcode: "15.2.0"
-      resource_class: m2pro.large
+    resource_class: m2pro.large
 
 commands:
   install-android-sdk-manager:
@@ -140,6 +141,7 @@ jobs:
       HOMEBREW_NO_AUTO_UPDATE: 1
     steps:
       - checkout
+      - macos/enable-vnc
       - restore_cache:
           keys:
             - v1-gem-cache-{{ arch }}
@@ -237,7 +239,7 @@ jobs:
             if [ "<< parameters.deploy_type >>" = "android" ]; then
               echo "Deploying Android app to Play Store..."
             else
-              echo "Deploying iOS app to App Store..."
+              echo "Deploying iOS app to App Store...."
             fi
             sleep 5
             echo "Deployment complete."
